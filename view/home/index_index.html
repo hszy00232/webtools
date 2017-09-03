@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>New ThinkJS Application</title>
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+<link rel="stylesheet" type="text/css" href="static/css/codemirror.css">
+<link rel="stylesheet" type="text/css" href="static/css/theme-day.css">
+<style id="flex-style">
+	.flex-container {
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-direction: row;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			-webkit-flex-wrap: nowrap;
+			-ms-flex-wrap: nowrap;
+			flex-wrap: nowrap;
+			-webkit-justify-content: flex-start;
+			-ms-flex-pack: start;
+			justify-content: flex-start;
+			-webkit-align-content: stretch;
+			-ms-flex-line-pack: stretch;
+			align-content: stretch;
+			}
+
+	.flex-item:nth-child(1) {
+			-webkit-order: 0;
+			-ms-flex-order: 0;
+			order: 0;
+			-webkit-flex: 0 1 auto;
+			-ms-flex: 0 1 auto;
+			flex: 0 1 auto;
+			-webkit-align-self: auto;
+			-ms-flex-item-align: auto;
+			align-self: auto;
+			}
+
+	.flex-item:nth-child(2) {
+			-webkit-order: 0;
+			-ms-flex-order: 0;
+			order: 0;
+			-webkit-flex: 0 1 auto;
+			-ms-flex: 0 1 auto;
+			flex: 0 1 auto;
+			-webkit-align-self: auto;
+			-ms-flex-item-align: auto;
+			align-self: auto;
+			}
+</style>
+<script type="text/javascript" src="static/js/jquery-1.8.3.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+</head>
+<body>
+	<div class="header">
+		<h1>Flexbox playground</h1>
+	</div>
+	<div class="wrapper">
+		<div class="main">
+			<div class="flex-container" <% if(result.rtl=="on"){ %>dir="rtl"<% } %>>
+				<% if(result && result["order[]"]){%>
+					<%if (typeof result["order[]"] !== "string"){%>
+						<% result["order[]"].forEach(function(item,index){ %>
+						<div class="flex-item">
+							<span contenteditable></span>
+							<span class="counter"><%-(index+1)%></span>
+						</div>
+						<% }) %>
+					<% }else{ %>
+						<div class="flex-item">
+							<span contenteditable></span>
+							<span class="counter">1</span>
+						</div>
+					<% } %>
+				<% }else{ %>
+					<div class="flex-item">
+						<span contenteditable></span>
+						<span class="counter">1</span>
+					</div>
+					<div class="flex-item">
+						<span contenteditable></span>
+						<span class="counter">2</span>
+					</div>
+				<% } %>
+			</div>
+			<form>
+			<p class="modifier" style="text-align: right;">RTL writing mode<input type="checkbox" name="rtl" <% if(result.rtl=="on"){ %>checked<% } %>/></p>
+			</form>
+			<textarea class="output-css" readonly>
+.flex-container {
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: row;
+		-ms-flex-direction: row;
+		flex-direction: row;
+		-webkit-flex-wrap: nowrap;
+		-ms-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+		-webkit-align-content: stretch;
+		-ms-flex-line-pack: stretch;
+		align-content: stretch;
+}
+
+.flex-item:nth-child(0) {
+		-webkit-order: 0;
+		-ms-flex-order: 0;
+		order: 0;
+		-webkit-flex: 0 1 auto;
+		-ms-flex: 0 1 auto;
+		flex: 0 1 auto;
+		-webkit-align-self: auto;
+		-ms-flex-item-align: auto;
+		align-self: auto;
+}
+.flex-item:nth-child(1) {
+		-webkit-order: 0;
+		-ms-flex-order: 0;
+		order: 0;
+		-webkit-flex: 0 1 auto;
+		-ms-flex: 0 1 auto;
+		flex: 0 1 auto;
+		-webkit-align-self: auto;
+		-ms-flex-item-align: auto;
+		align-self: auto;
+}
+			</textarea>
+		</div>
+<%container = {
+	"display": ["flex","inline-flex"],
+	"flex-direction":["row","row-reverse","column","column-reverse"],
+	"flex-wrap":["nowrap","wrap","wrap-reverse"],
+	"justify-content":["flex-start","flex-end","center","space-between","space-around"],
+	"align-items":["flex-start","flex-end","center","baseline","stretch"],
+	"align-content":["flex-start","flex-end","center","space-between","space-around","stretch"]
+}%>
+<%child = {
+	"align-self":["auto","flex-start","flex-end","center","baseline","stretch"]
+}%>
+		<div class="controls">
+			<form>
+				<fieldset class="">
+					<h2 class="title">flex container</h2>
+					<ol class="properties">
+						<% for(prop in container){ %>
+						<li>
+							<div class="property"><%=prop%></div>
+							<div class="values">
+								<select name="<%=prop%>">
+									<% container[prop].forEach(function(item){ %>
+									<option <% if(result && result[prop] == item){ %>selected<%}%>><%=item%></option>
+									<% }) %>
+								</select>
+							</div>
+						</li>
+						<% } %>
+					</ol>
+				</fieldset>
+				<fieldset>
+					<h2 class="title">flex item</h2>
+					<ol class="flex-items">
+						<% if(result && result["order[]"]){%>
+							<%if(typeof result["order[]"] !== "string"){%>
+								<% result["order[]"].forEach(function(item,index){ %>
+								<li class="flex-item">
+									<ol class="properties">
+										<li>
+											<div class="property">order</div>
+											<div class="values">
+												<input type="text" name="order[]" value="<%=item|1%>" size="3">
+											</div>
+										</li>
+										<li>
+											<% for( prop in child ){ %>
+											<div class="property"><%=prop%></div>
+											<div class="values">
+												<select name="align-self[]">
+													<% child[prop].forEach(function(item){ %>
+													<option <% if(result["align-self[]"][index] == item){ %>selected<% } %>><%=item%></option>
+													<% }) %>
+												</select>
+											</div>
+											<% } %>
+										</li>
+										<li>
+											<div class="property">flex</div>
+											<div class="values">
+												<input type="text" name="flex-grow[]" value="<%=result['flex-grow[]'][index]|0%>" size="3">
+												<input type="text" name="flex-shrink[]" value="<%=result['flex-shrink[]'][index]|1%>" size="3">
+												<input type="text" name="flex-basis[]"  value="<%=result['flex-basis[]'][index]%>" size="5">
+											</div>
+										</li>
+									</ol>
+								</li>
+								<%})%>
+							<% }else{ %>
+								<li class="flex-item">
+									<ol class="properties">
+										<li>
+											<div class="property">order</div>
+											<div class="values">
+												<input type="text" name="order[]" value="<%=result['order[]']|1%>" size="3">
+											</div>
+										</li>
+										<li>
+											<% for( prop in child ){ %>
+											<div class="property"><%=prop%></div>
+											<div class="values">
+												<select name="align-self[]">
+													<% child[prop].forEach(function(item){ %>
+													<option <% if(result['align-self[]'] == item){ %>selected<% } %> ><%=item%></option>
+													<% }) %>
+												</select>
+											</div>
+											<% } %>
+										</li>
+										<li>
+											<div class="property">flex</div>
+											<div class="values">
+												<input type="text" name="flex-grow[]" value="<%=result['flex-grow[]']|0%>" size="3">
+												<input type="text" name="flex-shrink[]" value="<%=result['flex-shrink[]']|1%>" size="3">
+												<input type="text" name="flex-basis[]" value="<%=result['flex-basis[]']|'auto'%>" size="5">
+											</div>
+										</li>
+									</ol>
+								</li>
+							<% } %>
+						<% }else{ %>
+							<li class="flex-item">
+								<ol class="properties">
+									<li>
+										<div class="property">order</div>
+										<div class="values">
+											<input type="text" name="order[]" value="1" size="3">
+										</div>
+									</li>
+									<li>
+										<% for( prop in child ){ %>
+										<div class="property"><%=prop%></div>
+										<div class="values">
+											<select name="align-self[]">
+												<% child[prop].forEach(function(item){ %>
+												<option><%=item%></option>
+												<% }) %>
+											</select>
+										</div>
+										<% } %>
+									</li>
+									<li>
+										<div class="property">flex</div>
+										<div class="values">
+											<input type="text" name="flex-grow[]" value="0" size="3">
+											<input type="text" name="flex-shrink[]" value="1" size="3">
+											<input type="text" name="flex-basis[]" value="auto%>" size="5">
+										</div>
+									</li>
+								</ol>
+							</li>
+							<li class="flex-item">
+								<ol class="properties">
+									<li>
+										<div class="property">order</div>
+										<div class="values">
+											<input type="text" name="order[]" value="1" size="3">
+										</div>
+									</li>
+									<li>
+										<% for( prop in child ){ %>
+										<div class="property"><%=prop%></div>
+										<div class="values">
+											<select name="align-self[]">
+												<% child[prop].forEach(function(item){ %>
+												<option><%=item%></option>
+												<% }) %>
+											</select>
+										</div>
+										<% } %>
+									</li>
+									<li>
+										<div class="property">flex</div>
+										<div class="values">
+											<input type="text" name="flex-grow[]" value="0" size="3">
+											<input type="text" name="flex-shrink[]" value="1" size="3">
+											<input type="text" name="flex-basis[]" value="auto" size="5">
+										</div>
+									</li>
+								</ol>
+							</li>
+						<% } %>
+					</ol>
+					<div class="add-remove-boxes">
+						<a href="javascript:;" class="add-box" title="添加子项"><span>+</span></a>
+						<a href="javascript:;" class="remove-box" title="移除子项"><span>-</span></a>
+					</div>
+				</fieldset>
+				<fieldset>
+					<h2 class="title">
+						Browser compatibility
+					</h2>
+					<table class="browsers">
+						<thead>
+							<tr>
+								<th>
+									<input type="checkbox" name="compate-new" <% if(!result["compate-new"] || result["compate-new"] == "on"){ %>checked<% } %>/>
+									<p>(new)</p>
+								</th>
+								<th>
+									<input type="checkbox" name="compate-old" <% if(result["compate-old"] == "on"){ %>checked<% } %>/>
+									<p>(old)</p>
+								</th>
+								<th>
+									<input type="checkbox" name="compate-tweener" <% if(result["compate-tweener"] == "on"){ %>checked<% } %>/>
+									<p>(tweener)</p>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>iOS(7.0+) Safari&Chrome</td>
+								<td>iOS(6.1~3.2) Safari&Chrome</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Android(4.4+) Browser</td>
+								<td>Android(4.3~4.1) Browser</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>IE Mobile(11)</td>
+								<td>UC Browser(9.9) for Android</td>
+								<td>IE Mobile(10)</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="tips"><a href="http://caniuse.com/#search=flex" target="_blank">See flex compatibility</a></p>
+				</fieldset>
+			</form>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div class="footer">
+		<p>Code and Design by <a href="http://blog.geekfe.com" target="_blank">冰果</a> Reference website <a href="http://the-echoplex.net/flexyboxes" target="_blank">flexyboxes</a></p>
+		<p>Powered by <a href="https://thinkjs.org" target="_blank">thinkjs</a></p>
+	</div>
+	<script type="text/javascript" src="static/js/codemirror.js"></script>
+	<script type="text/javascript" src="static/js/mode-css.js"></script>
+	<script type="text/javascript">
+	var editor = CodeMirror.fromTextArea($(".output-css")[0], {
+		mode: "css",
+		styleActiveLine: true,
+		lineNumbers: true,
+		lineWrapping: true,
+		readOnly: true,
+		theme:"day"
+	});
+	</script>
+	<!-- 演示：子项 -->
+	<script type="text/html" id="flex-item-tpl">
+		<div class="flex-item">
+			<span contenteditable></span>
+			<span class="counter">1</span>
+		</div>
+	</script>
+	<!-- 操作：子项 -->
+	<script type="text/html" id="flex-item-form-tpl">
+		<li class="flex-item">
+			<ol class="properties">
+				<li>
+					<div class="property">order</div>
+					<div class="values">
+						<input type="text" name="order[]" value="1" size="3">
+					</div>
+				</li>
+				<li>
+					<% for( prop in child ){ %>
+					<div class="property"><%=prop%></div>
+					<div class="values">
+						<select name="align-self[]">
+							<% child[prop].forEach(function(item){ %>
+							<option><%=item%></option>
+							<% }) %>
+						</select>
+					</div>
+					<% } %>
+				</li>
+				<li>
+					<div class="property">flex</div>
+					<div class="values">
+						<input type="text" name="flex-grow[]" value="0" size="3">
+						<input type="text" name="flex-shrink[]" value="1" size="3">
+						<input type="text" name="flex-basis[]" value="auto" size="5">
+					</div>
+				</li>
+			</ol>
+		</li>
+	</script>
+	<script type="text/javascript">
+		var App = {
+			flexUpdate : function(){
+				var params = $('form').serialize();
+				if($("input[name=rtl]").is(":checked")){
+					$(".flex-container").attr("dir","rtl");
+				}else{
+					$(".flex-container").attr("dir","ltr");
+				}
+				$.ajax('/index/data',{
+					data:params,
+					success:function(res){
+						if(res && res.errno == 0){
+							var data = res.data;
+							// var vanialla = data && data.vanialla;
+							$( '#flex-style' ).html(data.kitchensink);
+							editor.setValue(data.kitchensink);
+							if(window.history && history.pushState){
+								var baseUrl = "http://"+location.host+"/";
+								history.pushState({},null,location.href.split("?")[0]+"?"+params);
+							}
+						}
+					}
+				})
+			},
+			addFlexItem : function(){
+				 $('.flex-items').append($("#flex-item-form-tpl").html());
+				var $new = $($( '#flex-item-tpl' ).html());
+				var count = $( '.flex-container' ).find( '> .flex-item' ).length;
+				$new.find( '.counter' ).html( count + 1 );
+				$new.appendTo( '.flex-container' );
+				return false;
+			},
+			removeFlexItem : function(){
+				$(".flex-items > :last-child").remove();
+				$(".flex-container > :last-child").remove();
+			}
+		}
+		$(function(){
+			$('form').on('change','input,select',App.flexUpdate);
+			$(document).on('click',"a.add-box",App.addFlexItem);
+			$(document).on('click',"a.remove-box",App.removeFlexItem);
+			App.flexUpdate();
+		});
+	</script>
+</body>
+</html>

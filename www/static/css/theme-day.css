@@ -1,0 +1,48 @@
+/*
+
+    Name:       day
+    Author:     Michael Kaminsky (http://github.com/mkaminsky11)
+
+    Original day color scheme by Jesse Weed (https://github.com/jesseweed/day-syntax)
+
+*/
+.cm-s-day.CodeMirror {
+  background-color: #fff !important;
+  color: #d1c9c0 !important;
+  border: none;
+  font:12px/1.5 "Courier New",Courier,monospace;
+  border: 2px solid #eee;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+.cm-s-day .CodeMirror-lines{
+	color: #262b2f;
+}
+.cm-s-day .CodeMirror-gutters {
+  color: #adaba6;
+  background-color: #fff;
+  border: none;
+}
+.cm-s-day .CodeMirror-cursor { border-left: solid thin #d1c9c0; }
+.cm-s-day .CodeMirror-linenumber { color: #e0e2e5; }
+.cm-s-day.CodeMirror-focused div.CodeMirror-selected { background: #DCD8D2; }
+.cm-s-day .CodeMirror-line::selection, .cm-s-day .CodeMirror-line > span::selection, .cm-s-day .CodeMirror-line > span > span::selection { background: #DCD8D2; }
+.cm-s-day .CodeMirror-line::-moz-selection, .cm-s-day .CodeMirror-line > span::-moz-selection, .cm-s-day .CodeMirror-line > span > span::-moz-selection { background: #DCD8D2; }
+.cm-s-day span.cm-comment { color: #d4c8be; }
+.cm-s-day span.cm-string, .cm-s-day span.cm-string-2 { color: #5d6c7b; }
+.cm-s-day span.cm-number { color: #be516e; }
+.cm-s-day span.cm-variable { color: #be516e; }
+.cm-s-day span.cm-variable-2 { color: #2980b9; }
+.cm-s-day span.cm-def { color: #be516e; }
+.cm-s-day span.cm-operator { color: #be516e; }
+.cm-s-day span.cm-keyword { color: #be516e; }
+.cm-s-day span.cm-atom { color: #be516e; }
+.cm-s-day span.cm-meta { color: #5d6c7b; }
+.cm-s-day span.cm-tag { color: #5d6c7b; }
+.cm-s-day span.cm-attribute { color: #be516e; }
+.cm-s-day span.cm-qualifier { color: #5d6c7b; }
+.cm-s-day span.cm-property { color: #2980b9; }
+.cm-s-day span.cm-builtin { color: #2980b9; }
+.cm-s-day span.cm-variable-3 { color: #5d6c7b; }
+.cm-s-day .CodeMirror-activeline-background { background: #E7E4E0; }
+.cm-s-day .CodeMirror-matchingbracket { text-decoration: underline; }

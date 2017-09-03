@@ -1,0 +1,230 @@
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	body{
+		background: #f1f4f9;
+		color: #657580;
+	}
+	.header {
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+	}
+	.header > h1{
+		font: bold 45px/100px "Arial";
+		text-transform: uppercase;
+		text-shadow: 0 1px 1px rgba(0,0,0,.5);
+	}
+	.footer{
+		height: 60px;
+		padding-top: 10px;
+		text-align: center;
+		font-size: 12px;
+	}
+	.footer > p{
+		line-height: 1.5;
+	}
+	.footer > p > a{
+		color: #657580;
+	}
+	.wrapper{
+		width: 1000px;
+		padding: 20px 40px;
+		margin: 0 auto;
+		background: #fff;
+	}
+
+	.main{
+		float: left;
+		width: 600px;
+	}
+	.controls{
+		float: right;
+		width: 340px;
+		background: #f1f4f9;
+		padding: 10px;
+		border-radius: 2px;
+	}
+
+	.flex-container{
+		min-height: 400px;
+		padding: 5px;
+		border: 2px solid #b8b8b8;
+		border-radius: 2px;
+		box-sizing: content-box;
+		background: #e6e6e6;
+	}
+	
+	/* 子项 */
+	.flex-item{
+		background: #2aabe4;
+		color: #fefefe;
+		border-radius: 5px;
+		padding: 10px;
+		position: relative;
+		margin: 5px;
+	}
+	.flex-item .counter,
+	.flex-items > li:before{
+		position: absolute;
+		width: 24px;
+		height: 24px;
+		text-align: center;
+		border-radius: 50%;
+		color: #0071bc;
+		background: #fff;
+		line-height: 24px;
+		top: 4px;
+		left: 4px;
+		box-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+	}
+	.flex-items{
+		counter-reset: li;
+	}
+	.flex-items > li:before{
+		content: counter(li);
+		counter-increment: li;
+	}
+
+	.flex-container .flex-item span[contenteditable]{
+		display: block;
+		padding: 15px 25px;
+	}
+	.flex-container .flex-item span[contenteditable]:hover,
+	.flex-container .flex-item span[contenteditable]:focus{
+		background: #06425d;
+		outline: none;
+		border-radius: 2px;
+		box-shadow: 0 1px 1px rgba(0,0,0,.6) inset;
+	}
+
+
+	.controls .title{
+		font-size: 16px;
+		text-align: center;
+		color: #ee1f7a;
+		padding: 10px 0;
+	}
+	.controls .add-remove-boxes{
+		text-align: center;
+	}
+	.controls .add-remove-boxes a{
+		text-decoration: none;
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		background-color: #2aabe4;
+		color: #fff;
+		border-radius: 5px;
+		text-shadow: 0 0px 1px rgba(0,0,0,.6);
+		font-size: 24px;
+	}
+	.properties {
+		display: table;
+		line-height: 2.2;
+		font: 12px/2.2 "Courier New",Courier,monospace;
+	}
+	.properties li{
+		display: table-row;
+	}
+	.properties li > div{
+		display: table-cell;
+	}
+	.properties .property{
+		width: 120px;
+		text-align: right;
+		white-space: nowrap;
+	}
+	.properties .property:after{
+		content: ":";
+	}
+	.properties .values{
+		padding-left: 5px;
+	}
+	.output-css{
+		border: 1px solid #bdcbd3;
+		width: 100%;
+		height: 300px;
+		background: #edf2f5;
+	}
+
+	.browsers{
+		background: #fff;
+		font: 12px/1.2 "Courier New",Courier,monospace;
+		box-shadow: 1px 1px 1px rgba(0,0,0,.4);
+	}
+	.browsers th,
+	.browsers td{
+		border: 1px solid #eee;
+	}
+	.browsers th{
+		padding: 5px;
+	}
+	.browsers td{
+		padding: 2px 5px;
+	}
+	.modifier {
+		text-align: right;
+		font-size: 12px;
+	}
+	.tips{
+		text-align: right;
+		font-size: 12px;
+		margin-top: 10px;
+	}
+	.tips > a{
+		color: #aaa;
+	}
+	.tips > a:hover{
+		color: inherit;
+	}
+	/*#2aabe4  #0071bc
+#ee1f7a  #a10158
+color: #535F6F;
+    background: #c6ced8;
+#e6e6e6 #b8b8b8
+
+#9f9f9f*/
